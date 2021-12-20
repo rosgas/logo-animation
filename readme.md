@@ -16,4 +16,4 @@
 
 <h2 id="license-section">License</h2>
 
-This project is licensed under the [MIT License](https://github.com/rosgas/vanillajs-todo-list/blob/master/LICENSE).
+This project is licensed under the [MIT License]().
