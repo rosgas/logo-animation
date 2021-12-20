@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/dist/css/main.css" />
+    <title>Logo animation</title>
+  </head>
+  <body>
+    <div id="logo">
+      <div class="mark spin">
+        <div class="arc1 show"></div>
+        <div class="arc2 show"></div>
+        <div class="arc3 show"></div>
+        <div class="big-ball rotate"></div>
+        <div class="small-ball rotate"></div>
+        <div class="medium-ball rotate"></div>
+      </div>
+
+      <div class="text enter">
+        <div class="container">
+          <div class="name">
+            <h2 class="first-name">
+              <span class="emerge">R</span>
+              <span class="emerge">o</span>
+              <span class="emerge">s</span>
+              <span class="emerge">s</span>
+              <span class="emerge">e</span>
+              <span class="emerge">l</span>
+              <span class="emerge">l</span>
+              <span class="emerge">a</span>
+            </h2>
+            <h2 class="surname unroll"></h2>
+          </div>
+          <div class="line pop-up"></div>
+          <small class="strapline pop-up">Front-End Developer</small>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const container = document.querySelector('.container')
+      setTimeout(function () {
+        container.classList.add('flex')
+      }, 1000)
+    </script>
+  </body>
+</html>

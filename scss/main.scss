@@ -1,0 +1,796 @@
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:wght@700&family=Quicksand:wght@400;500&display=swap');
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100vh;
+}
+
+%ball-shared {
+  height: 50%;
+  width: 1px;
+  position: absolute;
+  left: 50%;
+  -webkit-transform-origin: bottom;
+  -ms-transform-origin: bottom;
+  transform-origin: bottom;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    -ms-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+%arc-shared {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  height: 70px;
+  width: 70px;
+  border: 1px solid transparent;
+  border-top-color: #313131;
+  border-radius: 100%;
+  -webkit-transform: rotate(45deg) scale(0);
+  -ms-transform: rotate(45deg) scale(0);
+  transform: rotate(45deg) scale(0);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    height: 100%;
+    width: 100%;
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+    border: 1px solid transparent;
+    border-top-color: #313131;
+    border-radius: 100%;
+    opacity: 1;
+  }
+}
+
+#logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mark {
+  position: relative;
+  height: 70px;
+  width: 70px;
+  border-radius: 100%;
+  -webkit-transform-origin: bottom center;
+  -ms-transform-origin: bottom center;
+  transform-origin: bottom center;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+
+  &.spin {
+    -webkit-animation: spin forwards 1s ease-in-out 1s;
+    animation: spin forwards 1s ease-in-out 1s;
+  }
+
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    20% {
+      -webkit-transform: rotate(20deg);
+      transform: rotate(20deg);
+    }
+    40% {
+      -webkit-transform: rotate(-25deg);
+      transform: rotate(-25deg);
+    }
+    60% {
+      -webkit-transform: rotate(15deg);
+      transform: rotate(15deg);
+    }
+    100% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    20% {
+      -webkit-transform: rotate(20deg);
+      transform: rotate(20deg);
+    }
+    40% {
+      -webkit-transform: rotate(-25deg);
+      transform: rotate(-25deg);
+    }
+    60% {
+      -webkit-transform: rotate(15deg);
+      transform: rotate(15deg);
+    }
+    100% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+  }
+
+  .arc1 {
+    @extend %arc-shared;
+
+    &.show {
+      -webkit-animation: show1 forwards 0.2s ease-out 0.6s,
+        disappear forwards 0.1s ease 1s;
+      animation: show1 forwards 0.2s ease-out 0.6s,
+        disappear forwards 0.1s ease 1s;
+
+      &:before {
+        -webkit-animation: set1 forwards 0.1s linear 1s;
+        animation: set1 forwards 0.1s linear 1s;
+      }
+    }
+
+    @-webkit-keyframes show1 {
+      to {
+        -webkit-transform: rotate(45deg) scale(1);
+        transform: rotate(45deg) scale(1);
+      }
+    }
+
+    @keyframes show1 {
+      to {
+        -webkit-transform: rotate(45deg) scale(1);
+        transform: rotate(45deg) scale(1);
+      }
+    }
+
+    @-webkit-keyframes set1 {
+      to {
+        width: 55px;
+        -webkit-transform: translate(-2px, 14px) rotate(30deg) scale(1);
+        transform: translate(-2px, 14px) rotate(30deg) scale(1);
+        border-radius: 0;
+      }
+    }
+
+    @keyframes set1 {
+      to {
+        width: 55px;
+        -webkit-transform: translate(-2px, 14px) rotate(30deg) scale(1);
+        transform: translate(-2px, 14px) rotate(30deg) scale(1);
+        border-radius: 0;
+      }
+    }
+  }
+
+  .arc2 {
+    @extend %arc-shared;
+    -webkit-transform: rotate(165deg) scale(0);
+    -ms-transform: rotate(165deg) scale(0);
+    transform: rotate(165deg) scale(0);
+
+    &.show {
+      -webkit-animation: show2 forwards 0.2s ease-out 0.6s,
+        disappear forwards 0.1s ease 1s;
+      animation: show2 forwards 0.2s ease-out 0.6s,
+        disappear forwards 0.1s ease 1s;
+
+      &:before {
+        -webkit-animation: set2 forwards 0.1s linear 1s;
+        animation: set2 forwards 0.1s linear 1s;
+      }
+    }
+
+    @-webkit-keyframes show2 {
+      to {
+        -webkit-transform: rotate(165deg) scale(1);
+        transform: rotate(165deg) scale(1);
+      }
+    }
+
+    @keyframes show2 {
+      to {
+        -webkit-transform: rotate(165deg) scale(1);
+        transform: rotate(165deg) scale(1);
+      }
+    }
+
+    @-webkit-keyframes set2 {
+      to {
+        width: 60px;
+        -webkit-transform: translate(-17px, 13px) rotate(50deg) scale(1);
+        transform: translate(-17px, 13px) rotate(50deg) scale(1);
+        border-radius: 0;
+      }
+    }
+
+    @keyframes set2 {
+      to {
+        width: 60px;
+        -webkit-transform: translate(-17px, 13px) rotate(50deg) scale(1);
+        transform: translate(-17px, 13px) rotate(50deg) scale(1);
+        border-radius: 0;
+      }
+    }
+  }
+
+  .arc3 {
+    @extend %arc-shared;
+    -webkit-transform: rotate(285deg) scale(0);
+    -ms-transform: rotate(285deg) scale(0);
+    transform: rotate(285deg) scale(0);
+
+    &.show {
+      -webkit-animation: show3 forwards 0.2s ease-out 0.6s,
+        disappear forwards 0.1s ease 1s;
+      animation: show3 forwards 0.2s ease-out 0.6s,
+        disappear forwards 0.1s ease 1s;
+
+      &:before {
+        -webkit-animation: set3 forwards 0.1s linear 1s;
+        animation: set3 forwards 0.1s linear 1s;
+      }
+    }
+
+    @-webkit-keyframes show3 {
+      to {
+        -webkit-transform: rotate(285deg) scale(1);
+        transform: rotate(285deg) scale(1);
+      }
+    }
+
+    @keyframes show3 {
+      to {
+        -webkit-transform: rotate(285deg) scale(1);
+        transform: rotate(285deg) scale(1);
+      }
+    }
+
+    @-webkit-keyframes set3 {
+      to {
+        width: 38px;
+        -webkit-transform: translate(10px, 8px) rotate(50deg) scale(1);
+        transform: translate(10px, 8px) rotate(50deg) scale(1);
+        border-radius: 0;
+      }
+    }
+
+    @keyframes set3 {
+      to {
+        width: 38px;
+        -webkit-transform: translate(10px, 8px) rotate(50deg) scale(1);
+        transform: translate(10px, 8px) rotate(50deg) scale(1);
+        border-radius: 0;
+      }
+    }
+  }
+
+  .big-ball {
+    @extend %ball-shared;
+
+    &:before {
+      // background-color: #ce214e;
+      background: -o-linear-gradient(230deg, #ce214e, #ce214e, #f0f0f0);
+      background: linear-gradient(220deg, #ce214e, #ce214e, #f0f0f0);
+    }
+
+    &.rotate {
+      -webkit-animation: rotateBig forwards 0.8s linear 0.2s,
+        setBig forwards 0.1s linear 1s;
+      animation: rotateBig forwards 0.8s linear 0.2s,
+        setBig forwards 0.1s linear 1s;
+
+      &:before {
+        -webkit-animation: appear forwards 0.2s ease 0.2s;
+        animation: appear forwards 0.2s ease 0.2s;
+      }
+    }
+
+    @-webkit-keyframes rotateBig {
+      0% {
+        -webkit-transform: translateX(-50%) rotate(0deg);
+        transform: translateX(-50%) rotate(0deg);
+      }
+      20% {
+        -webkit-transform: translateX(-50%) rotate(120deg);
+        transform: translateX(-50%) rotate(120deg);
+      }
+      100% {
+        -webkit-transform: translateX(-50%) rotate(480deg);
+        transform: translateX(-50%) rotate(480deg);
+      }
+    }
+
+    @keyframes rotateBig {
+      0% {
+        -webkit-transform: translateX(-50%) rotate(0deg);
+        transform: translateX(-50%) rotate(0deg);
+      }
+      20% {
+        -webkit-transform: translateX(-50%) rotate(120deg);
+        transform: translateX(-50%) rotate(120deg);
+      }
+      100% {
+        -webkit-transform: translateX(-50%) rotate(480deg);
+        transform: translateX(-50%) rotate(480deg);
+      }
+    }
+
+    @-webkit-keyframes setBig {
+      to {
+        -webkit-transform: translate(-10px, -10px) rotate(495deg) scale(1.4);
+        transform: translate(-10px, -10px) rotate(495deg) scale(1.4);
+      }
+    }
+
+    @keyframes setBig {
+      to {
+        -webkit-transform: translate(-10px, -10px) rotate(495deg) scale(1.4);
+        transform: translate(-10px, -10px) rotate(495deg) scale(1.4);
+      }
+    }
+  }
+
+  .small-ball {
+    @extend %ball-shared;
+    z-index: -1;
+
+    &:before {
+      // background-color: #9fa6d2;
+      background: -o-linear-gradient(30deg, #9fa6d2, #9fa6d2, #f0f0f0);
+      background: linear-gradient(60deg, #9fa6d2, #9fa6d2, #f0f0f0);
+    }
+
+    &.rotate {
+      -webkit-animation: rotateSmall forwards 1s linear,
+        setSmall forwards 0.1s linear 1s;
+      animation: rotateSmall forwards 1s linear,
+        setSmall forwards 0.1s linear 1s;
+
+      &:before {
+        -webkit-animation: appear forwards 0.2s ease;
+        animation: appear forwards 0.2s ease;
+      }
+    }
+
+    @-webkit-keyframes rotateSmall {
+      0% {
+        -webkit-transform: translateX(-50%) rotate(0deg);
+        transform: translateX(-50%) rotate(0deg);
+      }
+      40% {
+        -webkit-transform: translateX(-50%) rotate(240deg);
+        transform: translateX(-50%) rotate(240deg);
+      }
+      100% {
+        -webkit-transform: translateX(-50%) rotate(600deg);
+        transform: translateX(-50%) rotate(600deg);
+      }
+    }
+
+    @keyframes rotateSmall {
+      0% {
+        -webkit-transform: translateX(-50%) rotate(0deg);
+        transform: translateX(-50%) rotate(0deg);
+      }
+      40% {
+        -webkit-transform: translateX(-50%) rotate(240deg);
+        transform: translateX(-50%) rotate(240deg);
+      }
+      100% {
+        -webkit-transform: translateX(-50%) rotate(600deg);
+        transform: translateX(-50%) rotate(600deg);
+      }
+    }
+
+    @-webkit-keyframes setSmall {
+      to {
+        -webkit-transform: translate(-3px, -7px) rotate(640deg) scale(0.8);
+        transform: translate(-3px, -7px) rotate(640deg) scale(0.8);
+      }
+    }
+
+    @keyframes setSmall {
+      to {
+        -webkit-transform: translate(-3px, -7px) rotate(640deg) scale(0.8);
+        transform: translate(-3px, -7px) rotate(640deg) scale(0.8);
+      }
+    }
+  }
+
+  .medium-ball {
+    @extend %ball-shared;
+
+    &:before {
+      // background-color: #43414e;
+      background: -o-linear-gradient(
+        110deg,
+        #43414e,
+        #43414e,
+        #43414e,
+        #f0f0f0
+      );
+      background: linear-gradient(-20deg, #43414e, #43414e, #43414e, #f0f0f0);
+    }
+
+    &.rotate {
+      -webkit-animation: rotateMedium forwards 0.6s linear 0.4s,
+        setMedium forwards 0.1s linear 1s;
+      animation: rotateMedium forwards 0.6s linear 0.4s,
+        setMedium forwards 0.1s linear 1s;
+
+      &:before {
+        -webkit-animation: appear forwards 0.2s ease 0.4s;
+        animation: appear forwards 0.2s ease 0.4s;
+      }
+    }
+
+    @-webkit-keyframes rotateMedium {
+      from {
+        -webkit-transform: translateX(-50%) rotate(0deg);
+        transform: translateX(-50%) rotate(0deg);
+      }
+      to {
+        -webkit-transform: translateX(-50%) rotate(360deg);
+        transform: translateX(-50%) rotate(360deg);
+      }
+    }
+
+    @keyframes rotateMedium {
+      from {
+        -webkit-transform: translateX(-50%) rotate(0deg);
+        transform: translateX(-50%) rotate(0deg);
+      }
+      to {
+        -webkit-transform: translateX(-50%) rotate(360deg);
+        transform: translateX(-50%) rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes setMedium {
+      to {
+        -webkit-transform: rotate(375deg) scale(1);
+        transform: rotate(375deg) scale(1);
+      }
+    }
+
+    @keyframes setMedium {
+      to {
+        -webkit-transform: rotate(375deg) scale(1);
+        transform: rotate(375deg) scale(1);
+      }
+    }
+  }
+
+  @-webkit-keyframes disappear {
+    to {
+      border-top-color: transparent;
+    }
+  }
+
+  @keyframes disappear {
+    to {
+      border-top-color: transparent;
+    }
+  }
+
+  @-webkit-keyframes appear {
+    to {
+      opacity: 1;
+      -webkit-transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  @keyframes appear {
+    to {
+      opacity: 1;
+      -webkit-transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+.text {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  padding-left: 12px;
+  -webkit-transition: 0.4s ease-in;
+  -o-transition: 0.4s ease-in;
+  transition: 0.4s ease-in;
+
+  &.enter {
+    -webkit-animation: addDimension forwards 0.35s ease-in 0.7s,
+      addOpacity forwards 0.05s ease 1.05s;
+    animation: addDimension forwards 0.35s ease-in 0.7s,
+      addOpacity forwards 0.05s ease 1.05s;
+  }
+
+  @-webkit-keyframes addDimension {
+    from {
+      width: 0px;
+      height: 0px;
+    }
+    to {
+      width: 345px;
+      height: 75px;
+    }
+  }
+
+  @keyframes addDimension {
+    from {
+      width: 0px;
+      height: 0px;
+    }
+    to {
+      width: 345px;
+      height: 75px;
+    }
+  }
+
+  @-webkit-keyframes addOpacity {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes addOpacity {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .container {
+    display: none;
+    &.flex {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .name {
+    font-family: 'Cantarell', sans-serif;
+    font-size: 24px;
+    line-height: 1.2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+    .first-name {
+      color: #313131;
+      letter-spacing: -5px;
+      padding-right: 8px;
+      overflow: hidden;
+
+      span {
+        position: relative;
+        overflow: hidden;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 1.5px;
+          width: calc(100% + 2px);
+          height: 100%;
+          background-color: #fff;
+        }
+
+        &.emerge {
+          &:before {
+            -webkit-animation: fade forwards 0.3s linear 1.5s;
+            animation: fade forwards 0.3s linear 1.5s;
+          }
+        }
+
+        @-webkit-keyframes fade {
+          to {
+            -webkit-transform: translateX(110%);
+            transform: translateX(110%);
+          }
+        }
+
+        @keyframes fade {
+          to {
+            -webkit-transform: translateX(110%);
+            transform: translateX(110%);
+          }
+        }
+      }
+    }
+
+    .surname {
+      position: relative;
+      color: #fff;
+      padding: 0 4px;
+      width: 170.6px;
+      height: 48px;
+      overflow: hidden;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        transform: translateY(-100%);
+        background-color: #43414e;
+        z-index: -1;
+      }
+
+      &:after {
+        content: 'Gasbarri';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transform: rotateX(90deg);
+        transform: rotateX(90deg);
+        opacity: 0;
+      }
+
+      &.unroll {
+        &:before {
+          -webkit-animation: unrollBg forwards 0.3s linear 1.9s;
+          animation: unrollBg forwards 0.3s linear 1.9s;
+        }
+
+        &:after {
+          -webkit-animation: unrollText forwards 0.1s linear 2.3s;
+          animation: unrollText forwards 0.1s linear 2.3s;
+        }
+      }
+
+      @-webkit-keyframes unrollBg {
+        to {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes unrollBg {
+        to {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+        }
+      }
+
+      @-webkit-keyframes unrollText {
+        to {
+          -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+          opacity: 1;
+        }
+      }
+
+      @keyframes unrollText {
+        to {
+          -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .line {
+    width: 280px;
+    height: 1px;
+    background-color: #313131;
+    opacity: 0;
+
+    &.pop-up {
+      -webkit-animation: popUp forwards 0.2s linear 2.5s;
+      animation: popUp forwards 0.2s linear 2.5s;
+    }
+  }
+
+  .strapline {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 5px;
+    opacity: 0;
+
+    &.pop-up {
+      -webkit-animation: popUp forwards 0.2s linear 2.5s;
+      animation: popUp forwards 0.2s linear 2.5s;
+    }
+
+    @-webkit-keyframes popUp {
+      0% {
+        -webkit-transform: scale(0.6);
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      70% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes popUp {
+      0% {
+        -webkit-transform: scale(0.6);
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      70% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  #logo {
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "logo-animation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compileSass": "sass -w scss/main.scss dist/css/main.css --style expanded"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.45.0"
+  }
+}
