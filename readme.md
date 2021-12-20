@@ -11,9 +11,4 @@
 
 ![Alt Text](animation.gif)
 
-<br>
-<br>
 
-<h2 id="license-section">License</h2>
-
-This project is licensed under the [MIT License]().
